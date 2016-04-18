@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     @IBOutlet weak var collection : UICollectionView!
     var pokemons = [Pokemon]()
     var pokeReuslts = [Pokemon]()
+    var inSearch = false
    // var searchController : UISearchController!
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -19,7 +20,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         collection.delegate = self
         collection.dataSource = self
+        searchBar.delegate = self
         parseNamePoke()
+        searchBar.returnKeyType = UIReturnKeyType.Done
 //       //  searchBar = searchController.searchBar
 //          searchController.searchResultsUpdater = self
 //        searchController.dimsBackgroundDuringPresentation = false
@@ -54,34 +57,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     /////// get names from csv file ////////////
     /////// get names from csv file ////////////
     /////// get names from csv file ////////////
-//    func updateSearchResultsForSearchController(searchController: UISearchController) {
-//        if let seatchText = searchController.searchBar.text {
-//            filterContentSearchBar(seatchText)
-//            collection.reloadData()
-//        }
-//        
-//    }
-    
-    
-    // filter the reusltes func
-    // filter the reusltes func
-    // filter the reusltes func
-    // filter the reusltes func
-    
-//    func filterContentSearchBar(searchText : String){
-//        pokeReuslts = pokemons.filter( { (poke : Pokemon) -> Bool in
-//            let matchName = poke.name.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
-//            return matchName != nil
-//        })
-//        
-//        
-//    }
-    
-    
-    // filter the reusltes func
-    // filter the reusltes func
-    // filter the reusltes func
-    // filter the reusltes func
+
     
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -89,15 +65,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pokeCell", forIndexPath: indexPath) as? pokeVC {
+            let poke : Pokemon!
             
+            if  inSearch {
+                poke = pokeReuslts[indexPath.row]
+            }else {
+                poke = pokemons[indexPath.row]
+            }
+            cell.cofigureCell(poke)
             
-//            let pokemon = Pokemon(name: "test", pokdexId: indexPath.row + 1)
-            
-            
-           
- 
-         
-            cell.cofigureCell(pokemons[indexPath.row])
             
             return cell
         }else {
@@ -105,15 +81,61 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let poke : Pokemon!
+        if inSearch {
+            poke = pokeReuslts[indexPath.row]
+            
+        }else {
+            poke = pokemons[indexPath.row]
+            
+        }
+        
+        performSegueWithIdentifier("showPokeDetails", sender: poke)
         
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       
-   
-            return 718
+        if inSearch{
+            return pokeReuslts.count
+        } else {return 718}
+        
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(105.0, 105.0)
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        view.endEditing(true)
+       
+    }
+    
+    
+    // filter the reusltes func
+    // filter the reusltes func
+    // filter the reusltes func
+    // filter the reusltes func
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            inSearch = false
+            view.endEditing(true)
+            collection.reloadData()
+        }else {
+            inSearch = true
+            let lower = searchBar.text!.lowercaseString
+            pokeReuslts = pokemons.filter({$0.name.rangeOfString(lower) != nil })
+            collection.reloadData()
+        }
+        
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showPokeDetails" {
+            if let pokeDetaVC =  segue.destinationViewController as? PokeDetailsVC {
+                if let poke = sender as? Pokemon {
+                    pokeDetaVC.pokemon = poke
+                }
+            }
+        }
     }
     
 }

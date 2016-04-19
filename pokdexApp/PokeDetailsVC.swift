@@ -10,12 +10,12 @@ import UIKit
 
 class PokeDetailsVC: UIViewController {
     
-    @IBOutlet weak var name : UILabel!
+//    @IBOutlet weak var name : UILabel!
     var pokemon : Pokemon!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.text = pokemon.name
+//        name.text = pokemon.name
 
       
     }

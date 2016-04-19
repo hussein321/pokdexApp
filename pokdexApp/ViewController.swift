@@ -137,6 +137,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
     }
+    @IBAction func close(segue : UIStoryboardSegue){
+        
+    }
     
 }
 

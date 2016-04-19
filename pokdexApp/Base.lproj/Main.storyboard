@@ -274,7 +274,7 @@
                                             <constraint firstAttribute="height" constant="1" id="vTg-LB-0rV"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MA8-gf-1ni">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MA8-gf-1ni">
                                         <rect key="frame" x="0.0" y="316" width="375" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-jM-CZk">
@@ -303,7 +303,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1XR-y2-CZm">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1XR-y2-CZm">
                                         <rect key="frame" x="0.0" y="361" width="375" height="15"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BaseAttck:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dj3-Wo-2kF">
@@ -387,6 +387,20 @@
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="baseAtcLab" destination="x0a-Ss-W3w" id="vE8-vb-IRY"/>
+                        <outlet property="currImgEvu" destination="NMe-Fc-e3L" id="p3S-bm-AEP"/>
+                        <outlet property="defenceLab" destination="ctk-05-Aeb" id="4lf-Va-wFh"/>
+                        <outlet property="heightLab" destination="Lur-Up-Yza" id="PEG-qd-dMm"/>
+                        <outlet property="mainImg" destination="Epu-Fd-0aA" id="6yY-Xb-swY"/>
+                        <outlet property="mainLab" destination="g8P-Q5-prT" id="LMI-Gg-309"/>
+                        <outlet property="name" destination="4Yb-iH-tZT" id="jpp-Rd-UMG"/>
+                        <outlet property="nextEvueLab" destination="jYm-RY-ebS" id="J1f-kh-qU3"/>
+                        <outlet property="nextImgEvue" destination="zty-wU-fvq" id="KkS-zN-9a3"/>
+                        <outlet property="pokIdLab" destination="JDa-M4-hz5" id="zQO-5h-pmw"/>
+                        <outlet property="typeLab" destination="mVH-F3-OBl" id="HEE-rD-veE"/>
+                        <outlet property="wightLab" destination="OW3-je-NAp" id="Rus-o8-gsN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qy2-A5-q2t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pk1-Uz-aVV" userLabel="Exit" sceneMemberID="exit"/>
